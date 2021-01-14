@@ -5,8 +5,6 @@
 </template>
 
 <script>
-import { fetchNewsList } from '../api/index.js';
-
 export default {
   created() {
     // store/index.js의 FETCH_NEWS 실행   fetchNewList()   axios와 console.log
