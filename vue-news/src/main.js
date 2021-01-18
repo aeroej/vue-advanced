@@ -5,6 +5,7 @@ import { store } from '../src/store/index.js'
 
 Vue.config.productionTip = false
 
+// router & store 축약가능
 new Vue({
   render: h => h(App),
   router: router,
