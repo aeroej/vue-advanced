@@ -1,7 +1,7 @@
 <template>
   <div>
     <p v-for="item in fetchedAsk">
-      <a v-bind:href="item.url">
+      <a v-bind:href="`/item/${item.id}`">
         {{ item.title }}
       </a>
       <small>{{ item.time_ago }} {{ item.user }}</small>
@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import { mapState, mapGetters } from 'vuex';
+import { mapGetters } from 'vuex';
 
 export default {
   computed: {
