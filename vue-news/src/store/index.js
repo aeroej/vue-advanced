@@ -16,7 +16,10 @@ export const store = new Vuex.Store({
     getters: {
         fetchedAsk(state) {
             return state.ask;
-        }
+        },
+        fetchedItem(state) {
+            return state.item;
+        },
     },
     // 앞뒤가 같으므로 축약
     // mutations: mutations,
