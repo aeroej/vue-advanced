@@ -22,14 +22,24 @@ body {
   padding: 0;
   margin: 0;
 }
-
+a {
+  color: #34495e;
+  text-decoration: none;
+}
+a:hover {
+  color: #42b883;
+  text-decoration: underline;
+}
+a.router-link-exact-active {
+  text-decoration: underline;
+}
 /* 
   Router Transition
   https://router.vuejs.org/guide/advanced/transitions.html#per-route-transition
   https://vuejs.org/v2/guide/transitions.html
  */
 .page-enter-active, .page-leave-active {
-  transition: opacity .3s;
+  transition: opacity .4s;
 }
 .page-enter, .page-leave-to /* .page-leave-active below version 2.1.8 */ {
   opacity: 0;
