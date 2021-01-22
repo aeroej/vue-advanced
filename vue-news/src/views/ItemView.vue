@@ -1,8 +1,12 @@
 <template>
   <div>
     <section>
-      <!-- 질문 상세 정보 -->
-      <div class="user-container">
+      <!-- 사용자 상세 정보 -->
+      <user-profile :info="fetchedItem">
+        <div slot="username">{{ fetchedItem.user }}</div>
+        <template slot="time">{{ fetchedItem.time_ago }}</template>
+      </user-profile>
+      <!-- <div class="user-container">
         <div>
           <i class="fas fa-user"></i>
         </div>
@@ -14,11 +18,13 @@
             {{ fetchedItem.time_ago }}
           </div>
         </div>
-      </div>
-    <h2>{{ fetchedItem.title }}</h2>
+      </div> -->
     </section>
     <section>
-      <!-- 질문 댓글 -->
+      <h2>{{ fetchedItem.title }}</h2>
+    </section>
+    <!-- 질문 댓글 -->
+    <section>
       <div v-html="fetchedItem.content"></div>
     </section>
   </div>
@@ -26,7 +32,12 @@
 
 <script>
 import { mapGetters } from 'vuex';
+import UserProfile from '../components/UserProfile.vue';
+
 export default {
+  components: {
+    UserProfile: UserProfile,
+  },
   computed: {
     // 배열표기법 : getters에 정의한 이름 그대로 사용, {}객체표기법 : 사용할 이름 새로 정의
     ...mapGetters([
