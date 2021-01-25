@@ -24,13 +24,35 @@
 </template>
 
 <script>
-import ListItem from '../components/ListItem.vue';
+import ListItem from "../components/ListItem.vue";
+import bus from "../utils/bus.js";
 // import { mapGetters } from 'vuex';
 
 export default {
   components: {
-    ListItem: ListItem,
+    ListItem: ListItem
   },
+  created() {
+    bus.$emit("start:spinner");
+    this.$store.dispatch("FETCH_ASK")
+        .then(() => {
+          console.log("fetched");
+          bus.$emit("end:spinner");
+        })
+        .catch(error => {
+          console.log(error);
+      });
+    // setTimeout(() => {
+    //   this.$store.dispatch("FETCH_ASK")
+    //     .then(() => {
+    //       console.log("fetched");
+    //       bus.$emit("end:spinner");
+    //     })
+    //     .catch(error => {
+    //       console.log(error);
+    //     });
+    // }, 3000);
+  }
   // computed: {
   //   ...mapGetters([
   //     'fetchedAsk'
@@ -39,5 +61,5 @@ export default {
   // created() {
   //   this.$store.dispatch('FETCH_ASK');
   // }
-}
+};
 </script>
