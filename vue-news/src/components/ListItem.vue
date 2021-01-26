@@ -41,29 +41,9 @@
 
 <script>
 export default {
-  created() {
-    // this.$store.dispatch('FETCH_NEWS');
-    const name = this.$route.name;
-    if (name === "news") {
-      this.$store.dispatch("FETCH_NEWS");
-    } else if (name === "ask") {
-      this.$store.dispatch("FETCH_ASK");
-    } else if (name === "jobs") {
-      this.$store.dispatch("FETCH_JOBS");
-    }
-    // dispatch가 반복되는 것을 해결해보기
-  },
   computed: {
     listItems() {
       return this.$store.state.list;
-      // const name = this.$route.name;
-      // if (name === "news") {
-      //   return this.$store.state.news;
-      // } else if (name === "ask") {
-      //   return this.$store.state.ask;
-      // } else if (name === "jobs") {
-      //   return this.$store.state.jobs;
-      // }
     }
   }
 };
