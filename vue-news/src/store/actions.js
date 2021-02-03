@@ -8,37 +8,43 @@ import {
 } from '../api/index.js';
 
 export default {
-  FETCH_NEWS(context) {
-    return fetchNewsList()
-      .then(response => {
-        context.commit('SET_NEWS', response.data);
-        return response
-      })
-      .catch(error => console.log(error));
+  // promise
+  // FETCH_NEWS(context) {
+  //   return fetchNewsList()
+  //     .then(response => {
+  //       context.commit('SET_NEWS', response.data);
+  //       return response
+  //     })
+  //     .catch(error => console.log(error));
+  // },
+
+  // async
+  async FETCH_NEWS(context) {
+      const response = await fetchNewsList();
+      context.commit('SET_NEWS', response.data)
+      return response;
   },
-  FETCH_ASK(context) {
-    return fetchAskList()
-      .then(response => {
-        context.commit('SET_ASK', response.data)
-      })
-      .catch(error => console.log(error));
+
+  async FETCH_ASK(context) {
+    const response = await fetchAskList();
+    context.commit('SET_ASK', response.data);
+    return response;
   },
+
   // { commit } = context.commit
   // { data } = response.data
-  FETCH_JOBS({ commit }) {
-    return fetchJobsList()
-      .then(({ data }) => {
-        commit('SET_JOBS', data)
-      })
-      .catch(error => console.log(error));
+  async FETCH_JOBS({ commit }){
+    const { data } = await fetchJobsList();
+    commit('SET_JOBS', data)
+    return { data };
   },
-  FETCH_USER({ commit }, name) {
-    return fetchUserInfo(name)
-      .then(({ data }) => {
-        commit('SET_USER', data);
-      })
-      .catch(error => console.log(error));
+
+  async FETCH_USER({ commit }, name) {
+    const { data } = await fetchUserInfo(name);
+    commit ('SET_USER', data);
+    return { data };
   },
+
   FETCH_ITEM({ commit }, id) {
     return fetchItemInfo(id)
       .then(({ data }) => {
