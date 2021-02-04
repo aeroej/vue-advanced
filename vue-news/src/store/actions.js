@@ -45,18 +45,15 @@ export default {
     return { data };
   },
 
-  FETCH_ITEM({ commit }, id) {
-    return fetchItemInfo(id)
-      .then(({ data }) => {
-        commit('SET_ITEM', data);
-      })
-      .catch(error => console.log(error));
+  async FETCH_ITEM({ commit }, id) {
+    const { data } = await fetchItemInfo(id)
+    commit('SET_ITEM', data);
+    return { data }
   },
-  FETCH_LIST({ commit }, pageName){
-    return fetchList(pageName)
-      .then(({ data }) => {
-        commit('SET_LIST', data)
-      })
-      .catch(error => console.log(error))
-  },
+
+  async FETCH_LIST({ commit }, pageName) {
+    const { data } = await fetchList(pageName);
+    commit('SET_LIST', data);
+    return { data }
+  }
 }
